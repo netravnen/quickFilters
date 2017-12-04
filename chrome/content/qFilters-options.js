@@ -281,8 +281,11 @@ quickFilters.Options = {
       }
       if (crypto)
         [result, LicenseKey] = licenser.validateLicense(license, maxDigits);
-      else 
+      else { // reset internal state of object if no crypto can be found!
         result = State.Invalid;
+				licenser.DecryptedDate = "";
+				licenser.DecryptedMail = "";
+			}
       decryptedDate = licenser.DecryptedDate;
       getElement('licenseDate').value = decryptedDate; // invalid ??
       decryptedMail = licenser.DecryptedMail;

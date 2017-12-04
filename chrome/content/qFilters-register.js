@@ -124,7 +124,9 @@ quickFilters.Licenser = {
   
   load: function load() {
     const getElement = document.getElementById.bind(document),
-          util = quickFilters.Util;
+          util = quickFilters.Util,
+					licenser = util.Licenser,
+          ELS = licenser.ELicenseState;
         
     let dropdownCount = 0;
     function appendIdentity(dropdown, id, account) {
@@ -160,14 +162,13 @@ quickFilters.Licenser = {
       ref.value = window.arguments[1].inn.referrer;
     }
 		// prepare renew license button?
-    let licenser = util.Licenser,
-        decryptedDate = licenser ? licenser.DecryptedDate : '';
+    let decryptedDate = licenser ? licenser.DecryptedDate : '';
     if (decryptedDate) {
 			if (util.isDebug) {
 				util.logDebug('quickFilters.Licenser.load()\n' + 'ValidationStatus = ' + licenser.licenseDescription(licenser.ValidationStatus))
 				debugger;
 			}
-			if (licenser.ValidationStatus == licenser.ELicenseState.NotValidated) {
+			if (licenser.ValidationStatus == ELS.NotValidated) {
 				licenser.validateLicense(quickFilters.Preferences.getStringPref('LicenseKey'));
 				util.logDebug('Re-validated.\n' + 'ValidationStatus = ' + licenser.licenseDescription(licenser.ValidationStatus))
 			}
@@ -182,6 +183,10 @@ quickFilters.Licenser = {
 		}
     else
       getElement('licenseDate').collapsed = true;
+		
+		if (licenser.ValidationStatus != ELS.Valid && licenser.ValidationStatus != ELS.Expired)
+			getElement('licenseDateLabel').value = " ";
+
 
     // iterate accounts
     let idSelector = getElement('mailIdentity'),

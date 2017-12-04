@@ -110,7 +110,7 @@ quickFilters.Preferences = {
       prefString = this.service.getCharPref("extensions.quickfilters." + p);
     }
     catch(ex) {
-      QuickFolders.Util.logDebug("Could not find string pref: " + p + "\n" + ex.message);
+      quickFilters.Util.logDebug("Could not find string pref: " + p + "\n" + ex.message);
     }
     finally {
       return prefString;

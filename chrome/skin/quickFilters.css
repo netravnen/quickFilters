@@ -176,12 +176,18 @@ notification[value="quickfilters-proFeature"] .notification-button[accesskey] {
 	border-radius: 1px;
 	box-shadow: 2px 2px 3px -1px rgba(0, 0, 0, 0.5);
 	color: #FFFFFF;
+	cursor: pointer !important;
 	font-weight: bold;
 	transition-property: box-shadow, margin;
 	transition-duration: 0.75s, 0.2s;
 	height: 135% !important;
 	width: 135% !important;
 }
+
+notification[value="quickfilters-proFeature"] .notification-button[accesskey]:hover {
+	background: -moz-linear-gradient(top, #dbe42e 0%,#a8cc16 50%,#8fba00 51%,#b6d917 100%)  !important;
+}
+
 
 notification[value="quickfilters-filter"] image.messageImage,
 notification[value="quickfilters-proFeature"] image.messageImage {

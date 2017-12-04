@@ -423,9 +423,9 @@
 					<button id="btnPasteLicense"
 									label="&qf.button.pasteLicense;"
 									oncommand="quickFilters.Options.pasteLicense();" />
-					<button id="btnValdidateLicense"
+					<button id="btnValidateLicense"
 									label="&qf.button.validateLicense;"
-									oncommand="quickFilters.Options.validateLicense(false);" />
+									oncommand="quickFilters.Options.validateLicenseInOptions(false);" />
 				</vbox>
 			</hbox>
 			<separator class="licenseSeparator" />
