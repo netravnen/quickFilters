@@ -270,6 +270,9 @@
 		# Completed Swedish Locale (sv-SE) thanks to Mikael Hiort af Ornäs, A. Regnander at Babelzilla
 		# [Bug 26354] When merging / creating a filter, select "run on folder" automatically. This should be set to the specified account's inbox.
 		
+	3.4 : quickFilters Pro License!
+	  # 
+		
 	PLANNED CHANGES  
 		# [add support for Nostalgy: W.I.P.]  we now have quickMove in QuickFolders and it works with that
   PREMIUM FEATURES:
@@ -649,10 +652,11 @@ var quickFilters = {
         matchedFilter;
     
     try {
-      let acctMgr = Components.classes["@mozilla.org/messenger/account-manager;1"]
-                          .getService(Ci.nsIMsgAccountManager),
-          FA = Components.interfaces.nsMsgFilterAction;
-			for (let account in fixIterator(acctMgr.accounts, Ci.nsIMsgAccount)) {
+      const FA = Ci.nsMsgFilterAction,
+						accountList = util.Accounts;
+			// for (let account of fixIterator(acctMgr.accounts, Ci.nsIMsgAccount))
+			for (let a=0; a<accountList.length; a++) {  
+				let account = accountList[a];
         if (account.incomingServer && account.incomingServer.canHaveFilters )
         {
           let msg ='',
@@ -714,7 +718,7 @@ var quickFilters = {
 			util.popupAlert(wrn, "quickFilters", 'fugue-clipboard-exclamation.png');    
     }
     else {
-      util.popupProFeature("searchFolder", "quickfilters.premium.title.searchFolder", true, false);    
+      util.popupProFeature("searchFolder", true, false);    
     }
   },
 

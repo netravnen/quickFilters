@@ -63,11 +63,11 @@ td {
 }
 .product {
   background: rgb(234, 85, 7);
-  background: linear-gradient(to bottom, rgb(254, 204, 177) 0%, rgb(241, 116, 50) 50%, rgb(234, 85, 7) 51%, rgb(251, 149, 94) 100%);
-  border: 2px solid #eee !important;
-  border-radius: 0.6em 0.6em 0.1em 0.1em;
-  box-shadow: 3px 3px 4px -1px rgba(0,0,0,0.7);
-  color: #fff;
+  background: linear-gradient(to bottom, #fceabb 0%,#fccd4d 45%,#f8b500 56%,#fbdf93 100%);
+  border: 1px solid #d0d0d0 !important;
+  border-radius: 0.1em 0.1em 0.1em 0.1em;
+  box-shadow: 2px 2px 1px 0 rgba(40,30,0,0.3);
+  color: #4C3500;
   display: inline-block;
   font-family: calibri, arial, sans-serif;
   font-size: 16pt;
@@ -76,7 +76,7 @@ td {
   margin-top: 12px;
   margin-bottom: 12px;
   padding: 0.3em 1em 0.2em 1em;
-  text-shadow: 2px 2px 2px #333;
+  text-shadow: 1px 1px 0 0 rgba(40,30,0,0.3);
   vertical-align: middle;
 }
 .para {
