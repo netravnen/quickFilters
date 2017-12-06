@@ -4,7 +4,7 @@
     <Description about="urn:mozilla:install-manifest">
         <em:type>2</em:type> 
         <em:id>quickFilters@axelg.com</em:id>
-        <em:version>3.4pre102</em:version>
+        <em:version>3.4pre108</em:version>
 
 		<em:creator>Axel Grude</em:creator>
 		<!-- Thunderbird -->
@@ -20,7 +20,7 @@
 				<Description>
 						<em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
 						<em:minVersion>2.34</em:minVersion>
-						<em:maxVersion>2.48</em:maxVersion>
+						<em:maxVersion>2.49</em:maxVersion>
 				</Description>
 		</em:targetApplication>
 		<!-- Postbox  -->

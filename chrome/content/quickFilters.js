@@ -502,7 +502,8 @@ var quickFilters = {
   },
 
   checkFirstRun: function checkFirstRun() {
-		let util = quickFilters.Util;
+		let util = quickFilters.Util,
+		    prefs = quickFilters.Preferences;
     try {
       if (this.firstRunChecked)
         return;
@@ -514,8 +515,8 @@ var quickFilters = {
         window.setTimeout(function() { quickFilters.checkFirstRun(); }, 1000);
         return;
       }
-      let installedVersion = quickFilters.Preferences.getCharPref("installedVersion"),
-          firstRun = quickFilters.Preferences.getBoolPref("firstRun");
+      let installedVersion = prefs.getCharPref("installedVersion"),
+          firstRun = prefs.getBoolPref("firstRun");
       util.logDebug("firstRun = " + firstRun + "  - currentVersion = " + currentVersion + "  - installed = " + installedVersion);
       let toolbarId = '';
       if (firstRun) {
@@ -532,28 +533,36 @@ var quickFilters = {
         }
         util.installButton(toolbarId, "quickfilters-toolbar-button");
         util.installButton(toolbarId, "quickfilters-toolbar-listbutton");
-        quickFilters.Preferences.setBoolPref("firstRun", false);
+        prefs.setBoolPref("firstRun", false);
         util.showHomePage();
       }
       else {
         // is this an update?
 				let installedV = util.getVersionSimple(installedVersion),
 				    currentV = util.getVersionSimple(currentVersion);
-        if (currentVersion.indexOf("hc") ==-1)
-        {
-					if (util.versionLower(installedV, currentV))
-					{ 				
+        if (currentVersion.indexOf("hc") ==-1) {
+					if (util.versionLower(installedV, currentV)) { 	
+						util.logDebug("update case: showing version history");
 						util.showVersionHistory(false);
 						
-						if (quickFilters.Preferences.getBoolPrefSilent("extensions.quickfilters.donations.askOnUpdate")
-						    && !(installedV=="2.3" && currentV=="2.3.1")
-                && !(installedV=="2.4" && currentV=="2.4.1")
-                && !(installedV=="2.6" && currentV=="2.6.1"))
-						  util.showDonatePage();
+					
+						if (!util.hasPremiumLicense(false)) {
+							if (prefs.getBoolPrefSilent("extensions.quickfilters.donations.askOnUpdate")
+									&& !(installedV=="2.3" && currentV=="2.3.1")
+									&& !(installedV=="2.4" && currentV=="2.4.1")
+									&& !(installedV=="2.6" && currentV=="2.6.1"))
+								util.showDonatePage();
+						}
+						else
+							util.logDebug("quickfilters has premium license - omitted donate page.");
+							
 					}
         }
+				else { 
+					util.logDebug("currentVersion not determined: " + currentVersion);
+				}
         util.logDebug("store installedVersion: " + util.getVersionSimple(currentVersion));
-        quickFilters.Preferences.setCharPref("installedVersion", util.getVersionSimple(currentVersion));
+        prefs.setCharPref("installedVersion", util.getVersionSimple(currentVersion));
       }
       this.firstRunChecked = true;
     }
